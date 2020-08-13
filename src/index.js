@@ -1,17 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
-import {Provider} from 'react-redux'
-import {reducer} from './Reducers'
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux'
+import { reducer } from './Reducers'
+import thunk from 'redux-thunk'
+import { Paper } from '@material-ui/core';
+import 'fontsource-roboto'
 import './index.css';
 import App from './App';
 
-const store = createStore(reducer);
-
+const store = createStore(reducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Paper>
+      <App />
+    </Paper>
+
   </Provider>,
   document.getElementById('root')
 );
